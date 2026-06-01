@@ -15,10 +15,7 @@ def save_model(model):
     filename = f"class_model-{MODEL_NAME}-{timestamp}.joblib"
 
     # complete path
-    filepath = os.path.join(
-        MODEL_FOLDER,
-        filename
-    )
+    filepath = os.path.join(MODEL_FOLDER, filename)
 
     # save model
     joblib.dump(model, filepath)

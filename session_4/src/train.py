@@ -5,9 +5,7 @@ from metadata import MODEL_PARAMS
 
 def train_model(X, y):
 
-    model = DecisionTreeClassifier(
-        **MODEL_PARAMS
-    )
+    model = DecisionTreeClassifier(**MODEL_PARAMS)
 
     model.fit(X, y)
 

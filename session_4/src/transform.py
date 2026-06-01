@@ -8,17 +8,12 @@ from metadata import TARGET_COLUMN, FEATURE_COLUMNS
 def transform_data(df):
 
     # one hot encode categorical variables
-    encoder = OneHotEncoder(
-        drop="first",
-        sparse_output=False,
-        handle_unknown="ignore"
-    )
+    encoder = OneHotEncoder(drop="first", sparse_output=False, handle_unknown="ignore")
 
     encoded = encoder.fit_transform(df[["Geography", "Gender"]])
 
     encoded_df = pd.DataFrame(
-        encoded,
-        columns=encoder.get_feature_names_out(["Geography", "Gender"])
+        encoded, columns=encoder.get_feature_names_out(["Geography", "Gender"])
     )
 
     # numerical variables
@@ -31,15 +26,12 @@ def transform_data(df):
             "NumOfProducts",
             "HasCrCard",
             "IsActiveMember",
-            "EstimatedSalary"
+            "EstimatedSalary",
         ]
     ].reset_index(drop=True)
 
     # combine data
-    X = pd.concat(
-        [numerical_df, encoded_df],
-        axis=1
-    )
+    X = pd.concat([numerical_df, encoded_df], axis=1)
 
     # add missing columns if necessary
     for column in FEATURE_COLUMNS:
